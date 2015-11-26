@@ -1,11 +1,13 @@
 class PerformanceChartsController < ApplicationController
   before_action :set_performance_chart, only: [:show, :edit, :update, :destroy]
+  before_action :set_students
+  before_action :set_cohorts
+  before_action :dates_by_week
 
   # GET /performance_charts
   # GET /performance_charts.json
   def index
     @performance_charts = PerformanceChart.all
-    @cohorts = Cohort.all
   end
 
   # GET /performance_charts/1
@@ -71,5 +73,22 @@ class PerformanceChartsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def performance_chart_params
       params[:performance_chart]
+    end
+
+    def set_students
+      @students = Student.all
+    end
+
+    def set_cohorts
+      @cohorts = Cohort.all
+    end
+
+    def dates_by_week
+      @cohort = @cohorts.find(1)
+      dates = []
+      @students.each do |student|
+        dates << student.created_at.to_date
+      end
+      raise
     end
 end

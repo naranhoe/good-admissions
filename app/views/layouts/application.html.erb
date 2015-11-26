@@ -21,29 +21,25 @@
   // draws it.
 
   function drawChart() {
-
-    // Create the data table.
-    var data = new google.visualization.DataTable();
-    data.addColumn('string', 'Toppings');
-    data.addColumn('number', 'Slices');
-    data.addRows([
-      ['Cohort Number', <%=@cohorts.last.cohort_number%>],
-      ['Onions', 1]
+    var data = google.visualization.arrayToDataTable([
+      ['Date', 'Percentage'],
+      ['01/01/2016',  1000],
+      ['2005',  1170],
+      ['2006',  660],
+      ['2007',  1030]
     ]);
 
-    // Set chart options
-    var options = {'title':'How Much Pizza I Ate Last Night',
-                   'width':700,
-                   'height':400,
-                   'legend.alignment': 'left',
-                  //  color:
-                    is3D:true};
+    var options = {
+      title: 'Enrollment Percentage By Date',
+      curveType: 'function',
+      legend: { position: 'bottom' }
+    };
 
-    // Instantiate and draw our chart, passing in some options.
-    var chart = new         google.visualization.PieChart(document.getElementById('chart_div'));
+    var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
     chart.draw(data, options);
   }
-</script>
+  </script>
 </head>
 <body>
     <div class="notice"><%= notice %></div>
@@ -56,7 +52,7 @@
      <% end %>
 
      <!--Div that will hold the pie chart-->
-     <div id="chart_div"></div>
+     <div id="curve_chart" style="width: 900px; height: 500px"></div>
 
   <!-- <% if notice %>
     <p class="alert alert-success col-md-2 "><%= notice %></p>
