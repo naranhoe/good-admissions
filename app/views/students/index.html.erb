@@ -1,8 +1,28 @@
 <!-- <p id="notice"><%= notice %></p> -->
-<div class="table-responsive col-md-10 col-md-offset-1">
-  <h2>Listing
+
+<!-- This table will only show if there are students that do not have an associated cohort -->
+<% nil_cohort = false %>
+<% @all_students.each do |student| %>
+  <% if student.cohort.present? == false %>
+    <% nil_cohort = true %>
+  <% end %>
+<% end %>
+
+<% if nil_cohort == true %>
+  <%= render 'unspecified_students' %>
+<% end %>
+
+<br>
+
+<div class="row span12">
+  <div class="text-center">
+    <h2>Listing
     <% if (params[:cohort] && Cohort.all.collect(&:id).include?(params[:cohort][:id].to_i))%>
       <%= Cohort.find(params[:cohort][:id].to_i).name %>
+    <% elsif params[:cohort].present? && params[:cohort][:location].present? %>
+      <%= Cohort.find_by(location: params[:cohort][:location]).location %>
+    <% elsif params[:student].present? && params[:student][:balance].present? %>
+      <%= params[:student][:balance] %>
     <% end %>
     Students</h2>
 
@@ -50,13 +70,33 @@
       <% end %>
     </tbody>
   </table>
-</div>
-<br>
-
-<div class="container">
-    <div class="row">
-      <div class="col-md-12 text-center">
-      <%= link_to 'New Student', new_student_path, class: " btn btn-info new-student-btn" %>
-    </div>
+    <form class="student-filters">
+      <%= select("cohort", "id", Cohort.all.collect {|c| [c.name, c.id ]}, {include_blank: 'Cohort'}, class: "btn") %>
+      <input type="submit" value="Filter" />
+    </form>
+    <form class="student-filters">
+      <%= select("cohort", "location", Cohort.all.collect(&:location).uniq, {include_blank: 'Location'}, class: "btn") %>
+      <input type="submit" value="Filter" />
+    </form>
+    <% if current_user.admin? %>
+      <form class="student-filters">
+        <%= select("student", "balance", ["Outstanding", "Cleared"], {include_blank: 'Balance'}, class: "btn") %>
+        <input type="submit" value="Filter" />
+      </form>
+    <% end %>
   </div>
 </div>
+
+<%= render 'student_collection' %>
+
+<br>
+
+<% if current_user.admin? %>
+  <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+        <%= link_to 'New Student', new_student_path, class: " btn btn-info new-student-btn" %>
+      </div>
+    </div>
+  </div>
+<% end %>
