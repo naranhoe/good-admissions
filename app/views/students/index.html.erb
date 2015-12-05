@@ -8,6 +8,8 @@
   <% end %>
 <% end %>
 
+<%= form_tag search_students_path%>
+
 <div class="text-center">
   <form class="student-filters">
     <%= select("cohort", "id", Cohort.all.collect {|c| [c.name, c.id ]}, {include_blank: 'Cohort'}, class: "btn", id: "student-list-btn-bckgrd") %>
