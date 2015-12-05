@@ -6,6 +6,8 @@ class StudentsController < ApplicationController
   before_filter :default_filter, only: :index
   before_action :check_admin, except: [:index, :show]
 
+  def search
+  end
 
   def payments
   end
