@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get 'webhooks/stripe_webhook' => redirect('/')
   get 'performance_charts/new' => redirect('performance_charts')
   get 'payments' => 'payments#index', as: :payments
-  post 'students/search' => 'students#search', as: :search_students
+  post 'students/search' => 'students#search', as: 'search_students'
   post 'twilio/voice' => 'twilio#voice'
   post 'students/:student_id/:payment_type/:id/notify' => 'notifications#notify', as: :payment_notification
   post 'stripe/deposit' => 'webhooks#stripe_webhook'

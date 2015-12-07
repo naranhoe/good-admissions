@@ -8,7 +8,9 @@
   <% end %>
 <% end %>
 
-<%= form_tag search_students_path%>
+<%= form_tag search_students_path do %>
+  <input class="search" id='seachbar' name='query' placeholder='Search for Student' type='text' autocomplete="off">
+<% end %>
 
 <div class="text-center">
   <form class="student-filters">
