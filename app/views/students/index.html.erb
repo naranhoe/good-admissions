@@ -11,7 +11,7 @@
 <div class="container text-center">
   <div class="search-field col-md-12">
     <%= form_tag(students_path, :method => "get", id: "search-form") do %>
-    <%= text_field_tag :search, params[:search], placeholder: "Search Students", style:"width: 300px" %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search Students", style: "width: 300px; text-align: center" %>
     <%= submit_tag "Search", class: "btn btn-info" %>
     <% end %>
 
