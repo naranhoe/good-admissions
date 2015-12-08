@@ -8,16 +8,22 @@
   <% end %>
 <% end %>
 
-<%= form_tag(students_path, :method => "get", id: "search-form") do %>
-<%= text_field_tag :search, params[:search], placeholder: "Search Students" %>
-<%= submit_tag "Search" %>
-<% end %>
+<div class="text-center">
+  <div class="search-field">
+    <%= form_tag(students_path, :method => "get", id: "search-form") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search Students" %>
+    <%= submit_tag "Search", class: "btn btn-info" %>
+    <% end %>
 
-<!-- <% if @students.present? %>
-  <%= render @students %>
-<% else %>
-  <p>There are no posts containing the term(s) <%= "#{params[:search]}" %>.</p>
-<% end %> -->
+    <% if @search_students.empty? == false %>
+      <%= render "search_students" %>
+    <% elsif params[:search].present? && @search_students.empty? %>
+      <p>There are no posts containing the term(s) <%= "#{params[:search]}" %>.</p>
+    <% end %>
+  </div>
+</div>
+
+<br>
 
 <div class="text-center">
   <form class="student-filters">

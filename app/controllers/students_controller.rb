@@ -19,10 +19,10 @@ class StudentsController < ApplicationController
     @balance_students_filter = false
     @unspecified_students = Student.where(cohort_id: nil)
     @all_students = Student.all
-    if params[:search]
-      @all_students = Student.search(params[:search]).order("created_at DESC")
+    if params[:search] && params[:search].empty? == false
+      @search_students = Student.search(params[:search]).order("created_at DESC")
     else
-      @all_students = Student.all.order(created_at: :asc)
+      @search_students = []
     end
     filters
   end
