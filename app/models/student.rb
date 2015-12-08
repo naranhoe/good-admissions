@@ -16,6 +16,10 @@ class Student < ActiveRecord::Base
   # validates :phone_num, presence: true, length: { maximum: 20 }
   validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
 
+  def self.search(search)
+    where("phone_num ILIKE ?", "%#{search}%")
+  end
+
   def payments
      loans + checks + stripes + wires
   end
