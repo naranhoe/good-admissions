@@ -8,12 +8,22 @@
   <% end %>
 <% end %>
 
-<%= form_tag search_students_path do %>
-  <div class='input-append'>
-    <input class="search" id='seachbar' name='query' placeholder='Search for Student' type='text' autocomplete="off">
-    <input type="submit" value="Search" class="btn btn-info">
+<div class="text-center">
+  <div class="search-field">
+    <%= form_tag(students_path, :method => "get", id: "search-form") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search Students" %>
+    <%= submit_tag "Search", class: "btn btn-info" %>
+    <% end %>
+
+    <% if @search_students.empty? == false %>
+      <%= render "search_students" %>
+    <% elsif params[:search].present? && @search_students.empty? %>
+      <p>There are no posts containing the term(s) <%= "#{params[:search]}" %>.</p>
+    <% end %>
   </div>
-<% end %>
+</div>
+
+<br>
 
 <div class="text-center">
   <form class="student-filters">

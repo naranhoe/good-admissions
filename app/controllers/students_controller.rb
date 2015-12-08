@@ -6,10 +6,6 @@ class StudentsController < ApplicationController
   before_filter :default_filter, only: :index
   before_action :check_admin, except: [:index, :show]
 
-  def search
-    @q = "%#{params[:query]}%"
-  end
-
   def payments
   end
 
@@ -22,7 +18,12 @@ class StudentsController < ApplicationController
     @location_students_filter = false
     @balance_students_filter = false
     @unspecified_students = Student.where(cohort_id: nil)
-    @all_students = Student.all.order(created_at: :asc)
+    @all_students = Student.all
+    if params[:search] && params[:search].empty? == false
+      @search_students = Student.search(params[:search]).order("created_at DESC")
+    else
+      @search_students = []
+    end
     filters
   end
 
