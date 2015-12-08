@@ -17,7 +17,11 @@ class Student < ActiveRecord::Base
   validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
 
   def self.search(search)
-    where("first_name ILIKE ? OR last_name ILIKE ? OR email ILIKE ? OR phone_num ILIKE ?", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
+    where("first_name ILIKE ? OR last_name ILIKE ? OR email ILIKE ?
+    OR phone_num ILIKE ? OR facebook ILIKE ? OR twitter ILIKE ?
+    OR linkedin ILIKE ? OR github ILIKE ?", "%#{search}%", "%#{search}%",
+    "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%",
+    "%#{search}%")
 
   end
 
