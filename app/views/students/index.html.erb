@@ -9,7 +9,10 @@
 <% end %>
 
 <%= form_tag search_students_path do %>
-  <input class="search" id='seachbar' name='query' placeholder='Search for Student' type='text' autocomplete="off">
+  <div class='input-append'>
+    <input class="search" id='seachbar' name='query' placeholder='Search for Student' type='text' autocomplete="off">
+    <input type="submit" value="Search" class="btn btn-info">
+  </div>
 <% end %>
 
 <div class="text-center">

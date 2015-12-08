@@ -7,6 +7,7 @@ class StudentsController < ApplicationController
   before_action :check_admin, except: [:index, :show]
 
   def search
+    @q = "%#{params[:query]}%"
   end
 
   def payments
