@@ -52,5 +52,5 @@
       <% end %>
     </tbody>
   </table>
-  <div class="text-center"><%= will_paginate @payments %></div>
+  <div class="text-center digg_pagination"><%= will_paginate @payments, :page_links => true %></div>
 </div>
