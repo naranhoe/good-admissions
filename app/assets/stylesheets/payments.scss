@@ -51,18 +51,18 @@ input[type="radio"] {
     float: left;
     margin-right: 1px; }
   .digg_pagination .disabled {
-    color: #999999;
+    color: #5bc0de;
     border: 1px solid #dddddd; }
   .digg_pagination .current {
     font-style: normal;
     font-weight: bold;
-    background: #2e6ab1;
+    background: #5bc0de;
     color: white;
-    border: 1px solid #2e6ab1; }
+    border: 1px solid #5bc0de; }
   .digg_pagination a {
     text-decoration: none;
-    color: #105cb6;
-    border: 1px solid #9aafe5; }
+    color: #5bc0de;
+    border: 1px solid #5bc0de; }
     .digg_pagination a:hover, .digg_pagination a:focus {
       color: #000033;
       border-color: #000033; }
