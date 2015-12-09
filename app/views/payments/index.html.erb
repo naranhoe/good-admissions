@@ -1,5 +1,20 @@
 <!-- <p id="notice"><%= notice %></p> -->
 
+<div class="container text-center">
+  <div class="search-field col-md-12">
+    <%= form_tag(payments_path, :method => "get", id: "search-form") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search Payments by Date", style: "width: 300px;" %>
+    <%= submit_tag "Search", class: "btn btn-info" %>
+    <% end %>
+
+    <% if @search_payments.empty? == false %>
+      <%= render "search_students" %>
+    <% elsif params[:search].present? && @search_payments.empty? %>
+      <p>There are no posts containing the term(s) <%= "#{params[:search]}" %>.</p>
+    <% end %>
+  </div>
+</div>
+
 <div class="row">
   <div class="col-md-12 text-center">
     <div id="payment-listing">

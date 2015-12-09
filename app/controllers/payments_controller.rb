@@ -11,10 +11,16 @@ class PaymentsController < ApplicationController
 
   def index
     @payments = Student.all.map{ |s| s.payments }.flatten.sort_by(&:pay_date).reverse!.paginate(:page => params[:page], :per_page => 5)
+    @search_payments = Student.all
+    if params[:search] && params[:search].empty? == false
+      @search_payments = Student.search(params[:search]).order("created_at DESC")
+    else
+      @search_payments = []
+    end
   end
 
   private
-  
+
   def check_admin
     if current_user.try(:admin?) == false
       redirect_to root_path, notice: "You are not authorized to take that action"
