@@ -37,5 +37,10 @@ formVisibility = function() {
   displayForm();
 }
 
+$(function(){
+  $('#from-datepicker').datepicker();
+  $('#to-datepicker').datepicker();  
+});
+
 $(document).ready(formVisibility);
 $(document).on('page:load', formVisibility);

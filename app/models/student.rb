@@ -22,7 +22,16 @@ class Student < ActiveRecord::Base
     OR linkedin ILIKE ? OR github ILIKE ?", "%#{search}%", "%#{search}%",
     "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%",
     "%#{search}%")
+  end
 
+  def search_payments(date_from, date_to)
+    (loans + checks + stripes + wires).each do |student|
+      if student.created_at > (date_from)  &&  student.created_at < (date_to)
+        paym << student.created_at
+      else
+        paym = []
+      end
+    end
   end
 
   def payments
