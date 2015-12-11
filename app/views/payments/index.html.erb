@@ -22,7 +22,11 @@
   </div>
 
   <div class="container text-center">
-    <p>From: <input type="text" id="from-datepicker"> To: <input type="text" id="to-datepicker"></p>
+    <div class='date-field col-md-12'>
+      <p>From: <input type="text" id="from-datepicker"> </p>
+      <p>To: <input type="text" id="to-datepicker"></p>
+      <%= submit_tag "Find", class: "btn btn-info" %>
+    </div>
   </div>
 <br>
 
