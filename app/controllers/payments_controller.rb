@@ -11,12 +11,14 @@ class PaymentsController < ApplicationController
 
   def index
     @payments = Student.all.map{ |s| s.payments }.flatten.sort_by(&:pay_date).reverse!.paginate(:page => params[:page], :per_page => 5)
-    @search_payments = Student.all
-    if params[:search] && params[:search].empty? == false
-      @search_payments = Student.search(params[:search]).order("created_at DESC")
-    else
-      @search_payments = []
-    end
+    @search_for_payments = Student.all.find_by(params[:student_id]).payments[0].created_at
+    @date = params[:month] ? Date.parse(params[:month]) : Date.today
+
+    # if params[:search] && params[:search].empty? == false
+    #   @search_payments = Student.search(params[:search]).order("created_at DESC")
+    # else
+    #   @search_payments = []
+    # end
   end
 
   private

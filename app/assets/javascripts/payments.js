@@ -37,9 +37,9 @@ formVisibility = function() {
   displayForm();
 }
 
-$(function(){
+$(function() {
   $('#from-datepicker').datepicker();
-  $('#to-datepicker').datepicker();  
+  $('#to-datepicker').datepicker();
 });
 
 $(document).ready(formVisibility);
