@@ -1,4 +1,4 @@
 <% form_for(@search_for_payments) do |f| %>
-  <%= f.datepicker :created_at %>
+  <%= f.date_field :created_at %>
   <%= f.submit 'Find' %>
 <% end %>
