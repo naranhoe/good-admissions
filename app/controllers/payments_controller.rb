@@ -4,7 +4,7 @@ class PaymentsController < ApplicationController
   def new
     @student = Student.find(params[:id])
     @loan = Loan.new
-    @check = Check.new
+    @check = Check.new if @check.nil?
     @wire = Wire.new
     @stripe = Stripe.new
   end

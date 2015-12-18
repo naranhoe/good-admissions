@@ -36,7 +36,13 @@ class ChecksController < ApplicationController
         format.html { redirect_to student_payments_path(@check.student), notice: 'Check was successfully created.' }
         format.json { render :show, status: :created, location: @check }
       else
-        format.html { render :new }
+        # raise
+        error_m = " "
+        @check.errors.full_messages.map do |msg|
+          error_m += msg + '. '
+        end
+        format.html {redirect_to new_student_payment_path(@check.student), notice: "Check was unable to save:" + error_m
+        }
         format.json { render json: @check.errors, status: :unprocessable_entity }
       end
     end
