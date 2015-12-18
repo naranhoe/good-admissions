@@ -36,7 +36,12 @@ class WiresController < ApplicationController
         format.html { redirect_to student_payments_path(@wire.student), notice: 'Wire was successfully created.' }
         format.json { render :show, status: :created, location: @wire }
       else
-        format.html { render :new }
+        error_m = " "
+        @wire.errors.full_messages.map do |msg|
+          error_m += msg + '. '
+        end
+        format.html {redirect_to new_student_payment_path(@wire.student), notice: "Wire was unable to save:" + error_m
+        }
         format.json { render json: @wire.errors, status: :unprocessable_entity }
       end
     end

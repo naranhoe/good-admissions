@@ -38,7 +38,7 @@ class LoansController < ApplicationController
         @loan.errors.full_messages.map do |msg|
           error_m += msg + '. '
         end
-        format.html {redirect_to new_student_payment_path(@loan.student), notice: "Check was unable to save:" + error_m
+        format.html {redirect_to new_student_payment_path(@loan.student), notice: "Loan was unable to save:" + error_m
         }
         format.json { render json: @loan.errors, status: :unprocessable_entity }
       end

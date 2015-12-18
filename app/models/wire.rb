@@ -1,4 +1,5 @@
 class Wire < ActiveRecord::Base
+  validates :student_id, :amount, :pay_date, :sender, presence: true
   belongs_to :student
   before_create :set_sender
 

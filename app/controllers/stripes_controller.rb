@@ -36,7 +36,12 @@ class StripesController < ApplicationController
         format.html { redirect_to student_payments_path(@stripe.student), notice: 'Stripe was successfully created.' }
         format.json { render :show, status: :created, location: @stripe }
       else
-        format.html { render :new }
+        error_m = " "
+        @stripe.errors.full_messages.map do |msg|
+          error_m += msg + '. '
+        end
+        format.html {redirect_to new_student_payment_path(@stripe.student), notice: "Stripe payment was unable to save:" + error_m
+        }
         format.json { render json: @stripe.errors, status: :unprocessable_entity }
       end
     end
