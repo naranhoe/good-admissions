@@ -1,7 +1,5 @@
 class Check < ActiveRecord::Base
-  validates :student_id, presence: true
-  validates :deposited_date, presence: true
-  validates :amount, presence: true
+  validates :student_id, :amount, :pay_date, :check_number, presence: true
   belongs_to :student
   before_create :set_name_on_check
 

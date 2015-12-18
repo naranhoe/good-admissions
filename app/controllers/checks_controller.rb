@@ -36,7 +36,6 @@ class ChecksController < ApplicationController
         format.html { redirect_to student_payments_path(@check.student), notice: 'Check was successfully created.' }
         format.json { render :show, status: :created, location: @check }
       else
-        # raise
         error_m = " "
         @check.errors.full_messages.map do |msg|
           error_m += msg + '. '

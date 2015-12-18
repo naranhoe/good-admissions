@@ -34,7 +34,12 @@ class LoansController < ApplicationController
         format.html { redirect_to student_payments_path(@loan.student), notice: 'Loan was successfully created.' }
         format.json { render :show, status: :created, location: @loan }
       else
-        format.html { render :new }
+        error_m = " "
+        @loan.errors.full_messages.map do |msg|
+          error_m += msg + '. '
+        end
+        format.html {redirect_to new_student_payment_path(@loan.student), notice: "Check was unable to save:" + error_m
+        }
         format.json { render json: @loan.errors, status: :unprocessable_entity }
       end
     end
