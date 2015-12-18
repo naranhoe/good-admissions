@@ -100,7 +100,7 @@ class StudentsController < ApplicationController
         if params[:student][:balance] == "Outstanding"
           @filtered_students = Student.where("balance > ?", 0).order(balance: :desc)
         elsif params[:student][:balance] == "Cleared"
-          @filtered_students = Student.where(balance: 0)
+          @filtered_students = Student.where("balance <= ?", 0).order(balance: :asc)
         end
         @balance_students_filter = true
       else

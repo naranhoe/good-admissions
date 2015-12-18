@@ -51,7 +51,7 @@
       <div class="panel-heading">
           <strong>Balace:</strong>
       </div>
-      <% if @student.balance == 0 %>
+      <% if @student.balance <= 0 %>
         <div class="panel-body payments_color_blue">
           <%= number_to_currency(@student.balance) %>
         </div>
