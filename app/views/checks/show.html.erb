@@ -1,6 +1,6 @@
 <!-- <p id="notice"><%= notice %></p> -->
 <div class="container">
-    <div class="row">
+    <div class="btn-group" role="group" id="button-nav-group">
           <%= link_to 'All Payments', payments_path, class: "btn btn-info btn-text-color", id: "check-show-back-btn-left-margin" %>
           <%= link_to "#{@check.student.full_name}'s Payment(s)", student_payments_path(@check.student), class: "btn btn-info btn-text-color", id: "check-show-back-btn-left-margin" %>
     </div>
