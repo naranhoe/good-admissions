@@ -17,7 +17,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @filtered_students.each do |student| %>
+      <% @filtered_students.order(created_at: :asc).each do |student| %>
         <% if student.cohort.present? %>
           <tr>
             <% if current_user.admin? %>

@@ -1,6 +1,7 @@
 <!-- <p id="notice"><%= notice %></p> -->
 <div class="row">
   <div id="new-student-back_btn">
+    <%= link_to 'Back to Students', students_path, class: "btn btn-info btn-text-color", id: "students-path" %>
     <%= link_to 'View Payments', student_payments_path(@student), class: "btn btn-info btn-text-color", id: "student-detail-back-btn" %>
   </div>
 </div>

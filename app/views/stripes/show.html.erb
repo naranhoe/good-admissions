@@ -2,7 +2,10 @@
 
 <div class="container">
     <div class="row">
-      <%= link_to 'Back', stripes_path, class: "btn btn-info button-color-white", id:"stripes-show-back-btn" %>
+      <div id="button-nav-group">
+        <%= link_to 'All Payments', payments_path, class: "btn btn-info button-color-white", id:"stripes-show-back-btn" %>
+        <%= link_to "#{@stripe.student.full_name} Payment(s)", student_payments_path(@stripe.student), class: "btn btn-info button-color-white", id:"stripes-student-payments-btn" %>
+      </div>
     </div>
 </div>
 
