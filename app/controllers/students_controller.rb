@@ -95,6 +95,8 @@ class StudentsController < ApplicationController
       elsif @location.present?
         @filtered_students = @location.map(&:students)
         @filtered_students.flatten!
+        #the line below will turn the array to an active record relation, required for displaying the students in order correctly inthe view. 
+        @filtered_students = Student.where(id: @filtered_students.map(&:id))
         @location_students_filter = true
       elsif params[:student].present? && params[:student][:balance].present?
         if params[:student][:balance] == "Outstanding"

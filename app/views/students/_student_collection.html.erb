@@ -3,12 +3,14 @@
     <thead>
       <tr>
         <% if current_user.admin? %>
+          <th>#</th>
           <th>Cohort</th>
           <th>Full Name</th>
           <th>Email</th>
           <th>Phone Number</th>
           <th>Balance</th>
         <% else %>
+          <th class="instructor-th">#</th>
           <th class="instructor-th">Cohort</th>
           <th class="instructor-th">Full Name</th>
           <th class="instructor-th">Email</th>
@@ -17,7 +19,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @filtered_students.order(created_at: :asc).each do |student| %>
+      <% @filtered_students.order(created_at: :asc).each_with_index do |student, i| %>
         <% if student.cohort.present? %>
           <tr>
             <% if current_user.admin? %>
