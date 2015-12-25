@@ -9,7 +9,7 @@ Bundler.require(*Rails.groups)
 module GoodAdmissions
   class Application < Rails::Application
 
-    # Added by devise 
+    # Added by devise
     # config.assets.initialize_on_precompile = false
 
     # Settings in config/environments/* take precedence over those specified here.
