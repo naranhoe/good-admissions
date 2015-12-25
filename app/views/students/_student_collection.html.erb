@@ -23,6 +23,7 @@
         <% if student.cohort.present? %>
           <tr>
             <% if current_user.admin? %>
+              <td><%= i+1 %></td>
               <td><%= link_to "#{student.cohort.name}", student.cohort %></td>
               <td><%= link_to "#{student.full_name}", student %></td>
               <td><%= student.email %></td>
@@ -37,6 +38,7 @@
               <td><%= link_to 'View Payments', student_payments_path(student) %></td>
               <td><%= link_to 'Remove Student', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             <% else %>
+              <td class="instructor-td"><%= i+1 %></td>
               <td class="instructor-td"><%= link_to "#{student.cohort.name}", student.cohort %></td>
               <td class="instructor-td"><%= link_to "#{student.full_name}", student %></td>
               <td class="instructor-td"><%= student.email %></td>
