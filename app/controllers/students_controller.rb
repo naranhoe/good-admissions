@@ -7,11 +7,12 @@ class StudentsController < ApplicationController
   before_action :check_admin, except: [:index, :show]
 
   def import
-    Student.import(params[:file])
+    Student.import(params[:file], params[:cohort])
     redirect_to upload_path, notice: "Students imported"
   end
 
   def upload
+    @cohorts = Cohort.all
   end
 
   def payments

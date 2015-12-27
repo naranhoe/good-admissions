@@ -1,8 +1,7 @@
-<h1>This is where you will uplaod csv files yo</h1>
+<h1>Import CSV file to create new students</h1>
 
 <%= form_tag import_students_path, multipart: true do %>
   <%= file_field_tag :file %>
+  <%= select_tag :cohort, options_from_collection_for_select(@cohorts, "id", "name") , include_blank: "Cohort" %>
   <%= submit_tag "Import CSV"%>
 <% end %>
-
-<%# raise %>

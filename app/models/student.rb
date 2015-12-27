@@ -52,7 +52,7 @@ class Student < ActiveRecord::Base
     self.discount - params["discount"].to_i
   end
 
-  def self.import(file)
+  def self.import(file, cohort_from_params)
     #Extract
     CSV.foreach(file.path).with_index do |row, i|
 
@@ -70,7 +70,7 @@ class Student < ActiveRecord::Base
         phone_num = row[4]
         notes = row[5]
         deposit_date = Date.strptime(row[7], '%m/%d/%Y')
-        cohort = Cohort.find_by(name: "MIA9")
+        cohort = Cohort.find(cohort_from_params.to_i)
 
         #Load
         student = Student.new(first_name: first_name, last_name: last_name, email: email, phone_num: phone_num, notes: notes, created_at: deposit_date.to_datetime, cohort: cohort)
