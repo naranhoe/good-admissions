@@ -70,7 +70,8 @@ class Student < ActiveRecord::Base
         phone_num = row[4]
         notes = row[5]
         deposit_date = Date.strptime(row[7], '%m/%d/%Y')
-        cohort = Cohort.find(cohort_from_params.to_i)
+        cohort_finder = cohort_from_params.to_i
+        cohort = Cohort.find(cohort_finder) unless cohort_finder == 0
 
         #Load
         student = Student.new(first_name: first_name, last_name: last_name, email: email, phone_num: phone_num, notes: notes, created_at: deposit_date.to_datetime, cohort: cohort)
