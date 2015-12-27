@@ -6,6 +6,15 @@ class StudentsController < ApplicationController
   before_filter :default_filter, only: :index
   before_action :check_admin, except: [:index, :show]
 
+  def import
+    Student.import(params[:file], params[:cohort])
+    redirect_to upload_path, notice: "Students imported"
+  end
+
+  def upload
+    @cohorts = Cohort.all
+  end
+
   def payments
   end
 
@@ -95,7 +104,7 @@ class StudentsController < ApplicationController
       elsif @location.present?
         @filtered_students = @location.map(&:students)
         @filtered_students.flatten!
-        #the line below will turn the array to an active record relation, required for displaying the students in order correctly inthe view. 
+        #the line below will turn the array to an active record relation, required for displaying the students in order correctly inthe view.
         @filtered_students = Student.where(id: @filtered_students.map(&:id))
         @location_students_filter = true
       elsif params[:student].present? && params[:student][:balance].present?
