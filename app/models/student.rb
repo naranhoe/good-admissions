@@ -54,9 +54,10 @@ class Student < ActiveRecord::Base
 
   def self.import(file, cohort_from_params)
     #Extract
-    CSV.foreach(file.path).with_index do |row, i|
+    student_data = CSV.read(file.path)
 
-      #Transform
+    #Transform
+    student_data.each_with_index do |row, i|
       if row[0].nil?
         puts "#{i} empty"
       else
