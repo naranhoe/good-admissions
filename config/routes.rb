@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'webhooks/stripe_webhook' => redirect('/')
   get 'performance_charts/new' => redirect('performance_charts')
   get 'payments' => 'payments#index', as: :payments
+  get 'upload' => 'students#upload'
   post 'students/search' => 'students#search', as: 'search_students'
   post 'twilio/voice' => 'twilio#voice'
   post 'students/:student_id/:payment_type/:id/notify' => 'notifications#notify', as: :payment_notification
@@ -23,7 +24,9 @@ Rails.application.routes.draw do
   resources :wires
   resources :checks
   resources :loans
-  resources :students
+  resources :students do
+    collection {post :import}
+  end
 
   root 'students#index'
 end
