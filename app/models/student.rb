@@ -30,7 +30,7 @@ class Student < ActiveRecord::Base
       if student.created_at > (date_from)  &&  student.created_at < (date_to)
         paym << student.created_at
       else
-        paym = []
+        []
       end
     end
   end
